@@ -51,12 +51,26 @@ class NewsController extends Controller
             ]);
     
             return response()->json([
-                "updated_news" => $news
+                "isUpdated" => $news
             ]);
         }
         else
             return response()->json([
                 "message" => "unauthorized user."
             ]);         
+    }
+    function delete_news($id,Request $request) {
+        if ($request->user_type_id==1){
+
+            $news = News::find($id)->delete();
+    
+            return response()->json([
+                "isDeleted" => $news
+            ]);
+        }
+        else
+            return response()->json([
+                "message" => "unauthorized user."
+            ]); 
     }
 }

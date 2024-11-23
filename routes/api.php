@@ -11,3 +11,4 @@ Route::get('/news', [NewsController::class, 'get_news']);
 Route::get('/news/{id}', [NewsController::class, 'get_single_news']);
 Route::post('/news', [NewsController::class, 'create_news']);
 Route::post('/news/{id}', [NewsController::class, 'update_news']);
+Route::post('/news/{id}', [NewsController::class, 'delete_news']);
