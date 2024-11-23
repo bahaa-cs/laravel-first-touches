@@ -22,4 +22,23 @@ class NewsController extends Controller
             "news" => $news
         ]);
     }   
+
+    function create_news(Request $request) {
+        if ($request->user_type_id===1){
+
+            $news = News::create([
+                "content" => $request->content,
+                "from_age" => $request->from_age,
+                "to_age" => $request->to_age
+            ]);
+    
+            return response()->json([
+                "new_news" => $news
+            ]);
+        }
+        else
+            return response()->json([
+                "message" => "unauthorized user."
+            ]);         
+    }
 }
