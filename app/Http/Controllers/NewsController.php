@@ -24,7 +24,7 @@ class NewsController extends Controller
     }   
 
     function create_news(Request $request) {
-        if ($request->user_type_id===1){
+        if ($request->user_type_id==1){
 
             $news = News::create([
                 "content" => $request->content,
