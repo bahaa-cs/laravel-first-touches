@@ -14,4 +14,5 @@ Route::prefix("/news")->group(function() {
     Route::post('/', [NewsController::class, 'create_news']);
     Route::put('/{id}', [NewsController::class, 'update_news']);
     Route::delete('/{id}', [NewsController::class, 'delete_news']);
+    Route::get('/{from_age}/{to_age}', [NewsController::class, 'restrict_news']);
 });

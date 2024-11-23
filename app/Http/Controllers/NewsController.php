@@ -52,11 +52,23 @@ class NewsController extends Controller
 
       
     }
-    function delete_news($id) {
-        $news = News::find($id)->delete();
+    function restrict_news($from_age, $to_age) {
 
-        return response()->json([
-            "isDeleted" => $news
-        ]);
+        try{
+
+            $query = News::query();
+            $query->where('from_age', '>=', $from_age);
+            $query->where('to_age', '<=', $to_age);      
+            $news = $query->get();
+        
+            return response()->json([
+                "news" => $news
+            ]);
+        }
+        catch(error){
+            return response()->json([
+                "message" => error
+            ]);   
+        }
     }
 }
