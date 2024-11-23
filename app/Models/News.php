@@ -9,7 +9,5 @@ class News extends Model
     protected $fillable = [
         'content',
         'from_age',
-        'to_age',
-        'user_type_id'
-    ];
+        'to_age'    ];
 }

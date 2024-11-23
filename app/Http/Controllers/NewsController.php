@@ -24,7 +24,7 @@ class NewsController extends Controller
     }   
 
     function create_news(Request $request) {
-        if ($request->user_type_id==1){
+
 
             $news = News::create([
                 "content" => $request->content,
@@ -35,42 +35,28 @@ class NewsController extends Controller
             return response()->json([
                 "new_news" => $news
             ]);
-        }
-        else
-            return response()->json([
-                "message" => "unauthorized user."
-            ]);         
+       
     }
     function update_news($id,Request $request) {
-        if ($request->user_type_id==1){
 
-            $news = News::find($id)->update([
-                "content" => $request->content,
-                "from_age" => $request->from_age,
-                "to_age" => $request->to_age
-            ]);
-    
-            return response()->json([
-                "isUpdated" => $news
-            ]);
-        }
-        else
-            return response()->json([
-                "message" => "unauthorized user."
-            ]);         
+
+        $news = News::find($id)->update([
+            "content" => $request->content,
+            "from_age" => $request->from_age,
+            "to_age" => $request->to_age
+        ]);
+
+        return response()->json([
+            "isUpdated" => $news
+        ]);
+
+      
     }
-    function delete_news($id,Request $request) {
-        if ($request->user_type_id==1){
+    function delete_news($id) {
+        $news = News::find($id)->delete();
 
-            $news = News::find($id)->delete();
-    
-            return response()->json([
-                "isDeleted" => $news
-            ]);
-        }
-        else
-            return response()->json([
-                "message" => "unauthorized user."
-            ]); 
+        return response()->json([
+            "isDeleted" => $news
+        ]);
     }
 }
