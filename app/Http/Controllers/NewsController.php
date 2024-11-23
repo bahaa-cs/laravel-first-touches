@@ -14,5 +14,12 @@ class NewsController extends Controller
         return response()->json([
             "news" => $news
         ]);
+    }
+    function get_single_news($id) {
+        $news = News::find($id);
+
+        return response()->json([
+            "news" => $news
+        ]);
     }   
 }
